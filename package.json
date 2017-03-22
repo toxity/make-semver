@@ -1,6 +1,6 @@
 {
   "name": "make-semver",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "npm tool to parse and convert any number to semantic version",
   "main": "main.js",
   "bin": {

@@ -3,7 +3,9 @@ var assert = require('assert'),
     makeSemver = require('./main');
 
 describe('make-semver', function() {
-    var validDataSet = [
+    var valid = [
+            1, 1.0, 1.2,
+            [1], [1.2], [1,2],
             '1', '1.', '1.*',
             '1.0', '1.0-',
             '1.0.1', '1.0.1.', '1.0.1-',
@@ -11,25 +13,25 @@ describe('make-semver', function() {
             '1.0.1.1', '1.0.1.1.1.2.',
             'v2', 'v=2.2', ">1", ">=1.2.3"
         ],
-        invalidDataSet = ['TextWithoutNumber', '@%^$#@'],
-        weirdDataSet = ['4ever', 'my height is 180sm', 'IamThe1whoKnocks'];
+        invalid = ['', 'TextWithoutNumber', '@%^$#@', null, undefined, {}, []],
+        weird = ['4ever', 'my height is 180sm', 'IamThe1whoKnocks'];
 
 
-    it('should convert numbers to semver', function() {
-        for (var i = 0; i < validDataSet.length; i++) {
-            assert.notEqual(semver.valid(makeSemver(validDataSet[i])), null);
+    it('should convert input to semver', function() {
+        for (var i = 0; i < valid.length; i++) {
+            assert.notEqual(semver.valid(makeSemver(valid[i])), null);
         }
     });
 
-    it ('should error on invalid input', function () {
-        for (var i = 0; i < invalidDataSet.length; i++) {
-            assert.equal(makeSemver(invalidDataSet[i], true), null);
+    it ('should return null on invalid input', function () {
+        for (var i = 0; i < invalid.length; i++) {
+            assert.equal(makeSemver(invalid[i], true), null);
         }
     });
 
-    it ('should convert weird strings to semver', function () {
-        for (var i = 0; i < weirdDataSet.length; i++) {
-            assert.notEqual(makeSemver(weirdDataSet[i], true), null);
+    it ('should convert weird input to semver', function () {
+        for (var i = 0; i < weird.length; i++) {
+            assert.notEqual(makeSemver(weird[i], true), null);
         }
     });
 

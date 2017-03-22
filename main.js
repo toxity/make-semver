@@ -1,7 +1,7 @@
 /**
  * Created by im on 3/13/17.
  */
-module.exports = function (input, silence) {
+module.exports = function (input, printError) {
     input = String(input);
 
     var resultRegEx = /^((\d+\.)?(\d+\.)?(\*|\d+)((-[a-z]*)?(.\d+)?)?)$/,
@@ -15,7 +15,7 @@ module.exports = function (input, silence) {
         while (dots++ < 2) result += ".0";
     }
     if (!result.match(resultRegEx)) {
-        if (!silence) console.error('Input version is not valid - '+input);
+        if (!printError) console.error('Input version is not valid - '+input);
         return null;
     }
     return result;

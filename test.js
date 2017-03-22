@@ -25,13 +25,13 @@ describe('make-semver', function() {
 
     it ('should return null on invalid input', function () {
         for (var i = 0; i < invalid.length; i++) {
-            assert.equal(makeSemver(invalid[i], true), null);
+            assert.equal(makeSemver(invalid[i]), null);
         }
     });
 
     it ('should convert weird input to semver', function () {
         for (var i = 0; i < weird.length; i++) {
-            assert.notEqual(makeSemver(weird[i], true), null);
+            assert.notEqual(makeSemver(weird[i]), null);
         }
     });
 
